@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Imóveis</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro de Imóvel</h1>
+    <form id="cadastroImovel">
+      
+      <!-- Dados do Proprietário -->
+      <fieldset>
+        <legend>Dados do Proprietário</legend>
+        <label for="proprietario_nome">Nome:</label>
+        <input type="text" id="proprietario_nome" name="proprietario_nome" required>
+        
+        <label for="proprietario_fone">Fone/WhatsApp:</label>
+        <input type="tel" id="proprietario_fone" name="proprietario_fone" required>
+        
+        <label for="proprietario_email">E-mail:</label>
+        <input type="email" id="proprietario_email" name="proprietario_email" required>
+      </fieldset>
+      
+      <!-- Endereço do Imóvel -->
+      <fieldset>
+        <legend>Endereço do Imóvel</legend>
+        <label for="logradouro">Logradouro:</label>
+        <input type="text" id="logradouro" name="logradouro" required>
+        
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" required>
+        
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" name="numero" required>
+        
+        <label for="complemento">Complemento:</label>
+        <input type="text" id="complemento" name="complemento">
+        
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" name="bairro" required>
+        
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" required>
+        
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" required>
+          <option value="">Selecione</option>
+          <option value="SP">São Paulo</option>
+          <option value="RJ">Rio de Janeiro</option>
+          <option value="MG">Minas Gerais</option>
+        </select>
+      </fieldset>
+      
+      <!-- Promotores do Imóvel -->
+      <fieldset>
+        <legend>Promotores do Imóvel</legend>
+        <label for="captador">Captador:</label>
+        <select id="captador" name="captador">
+          <option value="">Selecione</option>
+          <option value="pedrao">Pedrão</option>
+          <option value="marcelao">Marcelão</option>
+          <option value="joaninha">Joaninha</option>
+          <option value="mariazinha">Mariazinha</option>
+          <option value="osvaldao">Osvaldão</option>
+          <option value="outro">Outro</option>
+        </select>
+        <label for="captador_outro">Outro Captador:</label>
+        <input type="text" id="captador_outro" name="captador_outro">
+        
+        <label for="gestor">Gestor (corretor):</label>
+        <input type="text" id="gestor" name="gestor">
+      </fieldset>
+      
+      <!-- Dados do Imóvel -->
+      <fieldset>
+        <legend>Dados do Imóvel</legend>
+        <label for="finalidade">Finalidade:</label>
+        <select id="finalidade" name="finalidade" required>
+          <option value="">Selecione</option>
+          <option value="venda">Venda</option>
+         <!--  <option value="aluguel">Aluguel</option>-->
+        </select>
+        
+        <label for="situacao">Situação do Imóvel:</label>
+        <select id="situacao" name="situacao" required>
+          <option value="">Selecione</option>
+          <option value="ativo">Ativo</option>
+          <option value="suspenso">Suspenso</option>
+          <option value="cancelado">Cancelado</option>
+          <option value="provisorio">Provisório</option>
+        </select>
+        
+        <label for="iptu">IPTU/ITR Mensal (R$):</label>
+        <input type="number" id="iptu" name="iptu">
+        
+        <label for="ocupa">Encontra-se:</label>
+        <select id="ocupa" name="ocupa" required>
+          <option value="">Selecione</option>
+          <option value="ocupado">Ocupado</option>
+          <option value="desocupado">Desocupado</option>
+          <option value="locado">Locado</option>
+          <option value="reservado">Reservado</option>
+        </select>
+        
+        <label for="momento">Momento:</label>
+        <select id="momento" name="momento" required>
+          <option value="">Selecione</option>
+          <option value="novo">Novo</option>
+          <option value="construcao">Em Construção</option>
+          <option value="usado">Usado</option>
+          <option value="lancamento">Lançamento</option>
+          <option value="reformado">Reformado</option>
+        </select>
+        
+        <label for="exclusividade">Exclusividade:</label>
+        <select id="exclusividade" name="exclusividade" required>
+          <option value="">Selecione</option>
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+        
+        <label for="ano_construcao">Ano da Construção:</label>
+        <input type="number" id="ano_construcao" name="ano_construcao">
+        
+        <label for="comentarios_imovel">Comentários sobre a situação do imóvel:</label>
+        <textarea id="comentarios_imovel" name="comentarios_imovel"></textarea>
+      </fieldset>
+      
+      <!-- Características Específicas -->
+      <fieldset>
+        <legend>Características Específicas</legend>
+        <label for="tipo_imovel">Tipo do Imóvel:</label>
+        <select id="tipo_imovel" name="tipo_imovel" required onchange="exibirCamposEspecificos()">
+          <option value="">Selecione</option>
+          <option value="casa">Casa</option>
+          <option value="apartamento">Apartamento</option>
+          <option value="terreno">Terreno</option>
+          <option value="rural">Rural</option>
+        </select>
+        <div id="camposEspecificos"></div>
+      </fieldset>
+      
+      <!-- Mercado e Condição Comercial -->
+      <fieldset>
+        <legend>Mercado e Condição Comercial</legend>
+        <label for="preco_anuncio">Preço de Anúncio (R$):</label>
+        <input type="number" id="preco_anuncio" name="preco_anuncio" required>
+        
+        <label for="condicao_comercial">Condição Comercial:</label>
+        <textarea id="condicao_comercial" name="condicao_comercial"></textarea>
+        
+        <label for="faixa_preco">Faixa de preço de imóveis similares (R$):</label>
+        <input type="text" id="faixa_preco" name="faixa_preco" placeholder="de R$... até R$...">
+        
+        <label for="comentarios_mercado">Comentários sobre o imóvel (mercado):</label>
+        <textarea id="comentarios_mercado" name="comentarios_mercado"></textarea>
+      </fieldset>
+      
+      <!-- Documentação e Mídias -->
+      <fieldset>
+        <legend>Documentação e Mídias</legend>
+        <label for="documentacao">Documentação do Imóvel:</label>
+        <input type="file" id="documentacao" name="documentacao[]" multiple>
+      
+        <label for="fotos">Fotos do Imóvel:</label>
+        <input type="file" id="fotos" name="fotos[]" multiple accept="image/*">
+      
+        <label for="video">Vídeos do Imóvel:</label>
+        <input type="file" id="video" name="video[]" multiple accept="video/*">
+      </fieldset>
+      
+      
+      <!-- Exposição e Publicação -->
+      <fieldset>
+        <legend>Exposição e Publicação</legend>
+        <label for="sinalizacao">Sinalização no Local:</label>
+        <select id="sinalizacao" name="sinalizacao">
+          <option value="">Selecione</option>
+          <option value="placa">Placa</option>
+          <option value="adesivo">Adesivo</option>
+          <option value="banner">Banner</option>
+          <option value="faixa">Faixa</option>
+        </select>
+        
+        <label for="data_colocacao">Data da Colocação:</label>
+        <input type="date" id="data_colocacao" name="data_colocacao">
+        
+        <label for="descricao_site">Descrição para o Site:</label>
+        <textarea id="descricao_site" name="descricao_site"></textarea>
+        
+        <label for="publicar_site">Publicar no Site:</label>
+        <select id="publicar_site" name="publicar_site" required>
+          <option value="">Selecione</option>
+          <option value="sim">Sim</option>
+          <option value="nao">Não</option>
+        </select>
+      </fieldset>
+      
+      <button type="submit">Cadastrar Imóvel</button>
+    </form>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>

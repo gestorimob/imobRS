@@ -1,0 +1,30 @@
+.hero-section {
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.property-card {
+    transition: transform 0.3s;
+    margin-bottom: 20px;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+}
+
+.features-section {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+}
+
+.contact-section {
+    background-color: #343a40;
+    color: white;
+    padding: 50px 0;
+}
